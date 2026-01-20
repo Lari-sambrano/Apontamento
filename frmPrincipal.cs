@@ -40,9 +40,10 @@ namespace Apontamento
             new FrmEscala().ShowDialog();
         }
 
-        private void gcmToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void gCMToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            new frmGcm().ShowDialog();  
+            new frmGcm().ShowDialog();
         }
     }
 }

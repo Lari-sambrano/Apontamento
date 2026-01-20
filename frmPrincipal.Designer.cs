@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.cadastroDeColaboradorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apontamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.escalasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.escalasEspeciaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gcmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.gCMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,9 +50,9 @@
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroDeColaboradorToolStripMenuItem,
             this.apontamentoToolStripMenuItem,
-            this.sairToolStripMenuItem,
             this.escalasToolStripMenuItem,
-            this.gcmToolStripMenuItem});
+            this.gCMToolStripMenuItem,
+            this.sairToolStripMenuItem});
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -77,14 +77,6 @@
             this.apontamentoToolStripMenuItem.Text = "Apontamento";
             this.apontamentoToolStripMenuItem.Click += new System.EventHandler(this.apontamentoToolStripMenuItem_Click);
             // 
-            // sairToolStripMenuItem
-            // 
-            this.sairToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
-            this.sairToolStripMenuItem.Text = "Sair";
-            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
-            // 
             // escalasToolStripMenuItem
             // 
             this.escalasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -100,12 +92,12 @@
             this.escalasEspeciaisToolStripMenuItem.Text = "Escalas Especiais";
             this.escalasEspeciaisToolStripMenuItem.Click += new System.EventHandler(this.escalasEspeciaisToolStripMenuItem_Click);
             // 
-            // gcmToolStripMenuItem
+            // sairToolStripMenuItem
             // 
-            this.gcmToolStripMenuItem.Name = "gcmToolStripMenuItem";
-            this.gcmToolStripMenuItem.Size = new System.Drawing.Size(68, 32);
-            this.gcmToolStripMenuItem.Text = "Gcm";
-            this.gcmToolStripMenuItem.Click += new System.EventHandler(this.gcmToolStripMenuItem_Click);
+            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
+            this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -119,6 +111,13 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // gCMToolStripMenuItem
+            // 
+            this.gCMToolStripMenuItem.Name = "gCMToolStripMenuItem";
+            this.gCMToolStripMenuItem.Size = new System.Drawing.Size(68, 32);
+            this.gCMToolStripMenuItem.Text = "Gcm";
+            this.gCMToolStripMenuItem.Click += new System.EventHandler(this.gCMToolStripMenuItem_Click_1);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
@@ -131,8 +130,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmPrincipal";
             this.Text = "Apontamento";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -148,9 +145,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem cadastroDeColaboradorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem apontamentoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+       // private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem escalasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem escalasEspeciaisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gcmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gCMToolStripMenuItem;
     }
 }
