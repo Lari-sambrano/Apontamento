@@ -1,0 +1,821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_apontamentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_cargo">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_colaborador">
+          <Key>
+            <PropertyRef Name="id_colaborador" />
+          </Key>
+          <Property Name="id_colaborador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_colaborador" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="id_escala" Type="int" Nullable="false" />
+          <Property Name="valor_hora" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status_colaborador" Type="bit" Nullable="false" />
+          <Property Name="id_gestor" Type="int" Nullable="false" />
+          <Property Name="id_operacao" Type="int" Nullable="false" />
+          <Property Name="id_cargo" Type="int" />
+          <Property Name="id_gcm" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_escala">
+          <Key>
+            <PropertyRef Name="id_escala" />
+          </Key>
+          <Property Name="id_escala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="hora_entrada" Type="time" Precision="7" Nullable="false" />
+          <Property Name="hora_almoco_inicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="hora_almoco_fim" Type="time" Precision="7" Nullable="false" />
+          <Property Name="hora_saida" Type="time" Precision="7" Nullable="false" />
+          <Property Name="tipo_escala" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dayoff_1" Type="int" Nullable="false" />
+          <Property Name="dayoff_2" Type="int" Nullable="false" />
+          <Property Name="domingo_off" Type="int" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="id_gestor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_eventos">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_evento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nome_evento" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cor_evento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descricao_evento" Type="varchar" MaxLength="200" />
+          <Property Name="id_gestor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_gcm">
+          <Key>
+            <PropertyRef Name="id_gcm" />
+          </Key>
+          <Property Name="id_gcm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="valor_hora" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_gestor">
+          <Key>
+            <PropertyRef Name="id_gestor" />
+          </Key>
+          <Property Name="id_gestor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_gestor" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="email_gestor" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="status_gestor" Type="bit" Nullable="false" />
+          <Property Name="data_cadastro" Type="datetime" />
+          <Property Name="id_cargo" Type="int" Nullable="false" />
+          <Property Name="id_gcm" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_operacao">
+          <Key>
+            <PropertyRef Name="id_operacao" />
+          </Key>
+          <Property Name="id_operacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_operacao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="id_gestor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_registro_horas">
+          <Key>
+            <PropertyRef Name="id_registro_horas" />
+          </Key>
+          <Property Name="id_registro_horas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_timesheet" Type="int" Nullable="false" />
+          <Property Name="hora_registro" Type="time" Precision="7" Nullable="false" />
+          <Property Name="observacao" Type="varchar" MaxLength="200" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_timesheet">
+          <Key>
+            <PropertyRef Name="id_timesheet" />
+          </Key>
+          <Property Name="id_timesheet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_colaborador" Type="int" Nullable="false" />
+          <Property Name="data" Type="date" Nullable="false" />
+          <Property Name="hora_entrada" Type="time" Precision="7" />
+          <Property Name="hora_saida" Type="time" Precision="7" />
+          <Property Name="hora_almoco_inicio" Type="time" Precision="7" />
+          <Property Name="hora_almoco_fim" Type="time" Precision="7" />
+          <Property Name="tipo_apontamento" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Colaborador_Escala">
+          <End Role="tb_escala" Type="Self.tb_escala" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_escala">
+              <PropertyRef Name="id_escala" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_escala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Operacao">
+          <End Role="tb_operacao" Type="Self.tb_operacao" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_operacao">
+              <PropertyRef Name="id_operacao" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_operacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_colaborador_tb_cargo">
+          <End Role="tb_cargo" Type="Self.tb_cargo" Multiplicity="0..1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_colaborador_tb_gcm">
+          <End Role="tb_gcm" Type="Self.tb_gcm" Multiplicity="0..1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gcm">
+              <PropertyRef Name="id_gcm" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_gcm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Escala_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_escala" Type="Self.tb_escala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_escala">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_eventos" Type="Self.tb_eventos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_eventos">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacao_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_operacao" Type="Self.tb_operacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_operacao">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroHoras_Evento">
+          <End Role="tb_eventos" Type="Self.tb_eventos" Multiplicity="1" />
+          <End Role="tb_registro_horas" Type="Self.tb_registro_horas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_eventos">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="tb_registro_horas">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroHoras_Timesheet">
+          <End Role="tb_timesheet" Type="Self.tb_timesheet" Multiplicity="1" />
+          <End Role="tb_registro_horas" Type="Self.tb_registro_horas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_timesheet">
+              <PropertyRef Name="id_timesheet" />
+            </Principal>
+            <Dependent Role="tb_registro_horas">
+              <PropertyRef Name="id_timesheet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_gestor_tb_cargo">
+          <End Role="tb_cargo" Type="Self.tb_cargo" Multiplicity="1" />
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_gestor">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_gestor_tb_gcm">
+          <End Role="tb_gcm" Type="Self.tb_gcm" Multiplicity="1" />
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gcm">
+              <PropertyRef Name="id_gcm" />
+            </Principal>
+            <Dependent Role="tb_gestor">
+              <PropertyRef Name="id_gcm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timesheet_Colaborador">
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="1" />
+          <End Role="tb_timesheet" Type="Self.tb_timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_colaborador">
+              <PropertyRef Name="id_colaborador" />
+            </Principal>
+            <Dependent Role="tb_timesheet">
+              <PropertyRef Name="id_colaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_apontamentoModelStoreContainer">
+          <EntitySet Name="tb_cargo" EntityType="Self.tb_cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_colaborador" EntityType="Self.tb_colaborador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_escala" EntityType="Self.tb_escala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_eventos" EntityType="Self.tb_eventos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_gcm" EntityType="Self.tb_gcm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_gestor" EntityType="Self.tb_gestor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_operacao" EntityType="Self.tb_operacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_registro_horas" EntityType="Self.tb_registro_horas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_timesheet" EntityType="Self.tb_timesheet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Colaborador_Escala" Association="Self.FK_Colaborador_Escala">
+            <End Role="tb_escala" EntitySet="tb_escala" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Gestor" Association="Self.FK_Colaborador_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Operacao" Association="Self.FK_Colaborador_Operacao">
+            <End Role="tb_operacao" EntitySet="tb_operacao" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_colaborador_tb_cargo" Association="Self.FK_colaborador_tb_cargo">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_colaborador_tb_gcm" Association="Self.FK_colaborador_tb_gcm">
+            <End Role="tb_gcm" EntitySet="tb_gcm" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Escala_Gestor" Association="Self.FK_Escala_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_escala" EntitySet="tb_escala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Gestor" Association="Self.FK_Evento_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_eventos" EntitySet="tb_eventos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacao_Gestor" Association="Self.FK_Operacao_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_operacao" EntitySet="tb_operacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroHoras_Evento" Association="Self.FK_RegistroHoras_Evento">
+            <End Role="tb_eventos" EntitySet="tb_eventos" />
+            <End Role="tb_registro_horas" EntitySet="tb_registro_horas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroHoras_Timesheet" Association="Self.FK_RegistroHoras_Timesheet">
+            <End Role="tb_timesheet" EntitySet="tb_timesheet" />
+            <End Role="tb_registro_horas" EntitySet="tb_registro_horas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_gestor_tb_cargo" Association="Self.FK_tb_gestor_tb_cargo">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_gestor_tb_gcm" Association="Self.FK_tb_gestor_tb_gcm">
+            <End Role="tb_gcm" EntitySet="tb_gcm" />
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timesheet_Colaborador" Association="Self.FK_Timesheet_Colaborador">
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+            <End Role="tb_timesheet" EntitySet="tb_timesheet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_apontamentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_cargo">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_colaborador_tb_cargo" FromRole="tb_cargo" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_tb_gestor_tb_cargo" FromRole="tb_cargo" ToRole="tb_gestor" />
+        </EntityType>
+        <EntityType Name="tb_colaborador">
+          <Key>
+            <PropertyRef Name="id_colaborador" />
+          </Key>
+          <Property Name="id_colaborador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_colaborador" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_escala" Type="Int32" Nullable="false" />
+          <Property Name="valor_hora" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status_colaborador" Type="Boolean" Nullable="false" />
+          <Property Name="id_gestor" Type="Int32" Nullable="false" />
+          <Property Name="id_operacao" Type="Int32" Nullable="false" />
+          <Property Name="id_cargo" Type="Int32" />
+          <Property Name="id_gcm" Type="Int32" />
+          <NavigationProperty Name="tb_cargo" Relationship="Self.FK_colaborador_tb_cargo" FromRole="tb_colaborador" ToRole="tb_cargo" />
+          <NavigationProperty Name="tb_escala" Relationship="Self.FK_Colaborador_Escala" FromRole="tb_colaborador" ToRole="tb_escala" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_Colaborador_Gestor" FromRole="tb_colaborador" ToRole="tb_gestor" />
+          <NavigationProperty Name="tb_operacao" Relationship="Self.FK_Colaborador_Operacao" FromRole="tb_colaborador" ToRole="tb_operacao" />
+          <NavigationProperty Name="tb_gcm" Relationship="Self.FK_colaborador_tb_gcm" FromRole="tb_colaborador" ToRole="tb_gcm" />
+          <NavigationProperty Name="tb_timesheet" Relationship="Self.FK_Timesheet_Colaborador" FromRole="tb_colaborador" ToRole="tb_timesheet" />
+        </EntityType>
+        <EntityType Name="tb_escala">
+          <Key>
+            <PropertyRef Name="id_escala" />
+          </Key>
+          <Property Name="id_escala" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hora_entrada" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="hora_almoco_inicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="hora_almoco_fim" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="hora_saida" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="tipo_escala" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dayoff_1" Type="Int32" Nullable="false" />
+          <Property Name="dayoff_2" Type="Int32" Nullable="false" />
+          <Property Name="domingo_off" Type="Int32" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="id_gestor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_Colaborador_Escala" FromRole="tb_escala" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_Escala_Gestor" FromRole="tb_escala" ToRole="tb_gestor" />
+        </EntityType>
+        <EntityType Name="tb_eventos">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_evento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nome_evento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cor_evento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descricao_evento" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_gestor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_Evento_Gestor" FromRole="tb_eventos" ToRole="tb_gestor" />
+          <NavigationProperty Name="tb_registro_horas" Relationship="Self.FK_RegistroHoras_Evento" FromRole="tb_eventos" ToRole="tb_registro_horas" />
+        </EntityType>
+        <EntityType Name="tb_gcm">
+          <Key>
+            <PropertyRef Name="id_gcm" />
+          </Key>
+          <Property Name="id_gcm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valor_hora" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_colaborador_tb_gcm" FromRole="tb_gcm" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_tb_gestor_tb_gcm" FromRole="tb_gcm" ToRole="tb_gestor" />
+        </EntityType>
+        <EntityType Name="tb_gestor">
+          <Key>
+            <PropertyRef Name="id_gestor" />
+          </Key>
+          <Property Name="id_gestor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_gestor" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_gestor" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status_gestor" Type="Boolean" Nullable="false" />
+          <Property Name="data_cadastro" Type="DateTime" Precision="3" />
+          <Property Name="id_cargo" Type="Int32" Nullable="false" />
+          <Property Name="id_gcm" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_cargo" Relationship="Self.FK_tb_gestor_tb_cargo" FromRole="tb_gestor" ToRole="tb_cargo" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_Colaborador_Gestor" FromRole="tb_gestor" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_escala" Relationship="Self.FK_Escala_Gestor" FromRole="tb_gestor" ToRole="tb_escala" />
+          <NavigationProperty Name="tb_eventos" Relationship="Self.FK_Evento_Gestor" FromRole="tb_gestor" ToRole="tb_eventos" />
+          <NavigationProperty Name="tb_gcm" Relationship="Self.FK_tb_gestor_tb_gcm" FromRole="tb_gestor" ToRole="tb_gcm" />
+          <NavigationProperty Name="tb_operacao" Relationship="Self.FK_Operacao_Gestor" FromRole="tb_gestor" ToRole="tb_operacao" />
+        </EntityType>
+        <EntityType Name="tb_operacao">
+          <Key>
+            <PropertyRef Name="id_operacao" />
+          </Key>
+          <Property Name="id_operacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_operacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="id_gestor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_Colaborador_Operacao" FromRole="tb_operacao" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_gestor" Relationship="Self.FK_Operacao_Gestor" FromRole="tb_operacao" ToRole="tb_gestor" />
+        </EntityType>
+        <EntityType Name="tb_registro_horas">
+          <Key>
+            <PropertyRef Name="id_registro_horas" />
+          </Key>
+          <Property Name="id_registro_horas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_timesheet" Type="Int32" Nullable="false" />
+          <Property Name="hora_registro" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_eventos" Relationship="Self.FK_RegistroHoras_Evento" FromRole="tb_registro_horas" ToRole="tb_eventos" />
+          <NavigationProperty Name="tb_timesheet" Relationship="Self.FK_RegistroHoras_Timesheet" FromRole="tb_registro_horas" ToRole="tb_timesheet" />
+        </EntityType>
+        <EntityType Name="tb_timesheet">
+          <Key>
+            <PropertyRef Name="id_timesheet" />
+          </Key>
+          <Property Name="id_timesheet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_colaborador" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora_entrada" Type="Time" Precision="7" />
+          <Property Name="hora_saida" Type="Time" Precision="7" />
+          <Property Name="hora_almoco_inicio" Type="Time" Precision="7" />
+          <Property Name="hora_almoco_fim" Type="Time" Precision="7" />
+          <Property Name="tipo_apontamento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_colaborador" Relationship="Self.FK_Timesheet_Colaborador" FromRole="tb_timesheet" ToRole="tb_colaborador" />
+          <NavigationProperty Name="tb_registro_horas" Relationship="Self.FK_RegistroHoras_Timesheet" FromRole="tb_timesheet" ToRole="tb_registro_horas" />
+        </EntityType>
+        <Association Name="FK_colaborador_tb_cargo">
+          <End Role="tb_cargo" Type="Self.tb_cargo" Multiplicity="0..1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_gestor_tb_cargo">
+          <End Role="tb_cargo" Type="Self.tb_cargo" Multiplicity="1" />
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_gestor">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Escala">
+          <End Role="tb_escala" Type="Self.tb_escala" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_escala">
+              <PropertyRef Name="id_escala" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_escala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Operacao">
+          <End Role="tb_operacao" Type="Self.tb_operacao" Multiplicity="1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_operacao">
+              <PropertyRef Name="id_operacao" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_operacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_colaborador_tb_gcm">
+          <End Role="tb_gcm" Type="Self.tb_gcm" Multiplicity="0..1" />
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gcm">
+              <PropertyRef Name="id_gcm" />
+            </Principal>
+            <Dependent Role="tb_colaborador">
+              <PropertyRef Name="id_gcm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timesheet_Colaborador">
+          <End Role="tb_colaborador" Type="Self.tb_colaborador" Multiplicity="1" />
+          <End Role="tb_timesheet" Type="Self.tb_timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_colaborador">
+              <PropertyRef Name="id_colaborador" />
+            </Principal>
+            <Dependent Role="tb_timesheet">
+              <PropertyRef Name="id_colaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Escala_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_escala" Type="Self.tb_escala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_escala">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_eventos" Type="Self.tb_eventos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_eventos">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroHoras_Evento">
+          <End Role="tb_eventos" Type="Self.tb_eventos" Multiplicity="1" />
+          <End Role="tb_registro_horas" Type="Self.tb_registro_horas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_eventos">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="tb_registro_horas">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_gestor_tb_gcm">
+          <End Role="tb_gcm" Type="Self.tb_gcm" Multiplicity="1" />
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gcm">
+              <PropertyRef Name="id_gcm" />
+            </Principal>
+            <Dependent Role="tb_gestor">
+              <PropertyRef Name="id_gcm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacao_Gestor">
+          <End Role="tb_gestor" Type="Self.tb_gestor" Multiplicity="1" />
+          <End Role="tb_operacao" Type="Self.tb_operacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_gestor">
+              <PropertyRef Name="id_gestor" />
+            </Principal>
+            <Dependent Role="tb_operacao">
+              <PropertyRef Name="id_gestor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroHoras_Timesheet">
+          <End Role="tb_timesheet" Type="Self.tb_timesheet" Multiplicity="1" />
+          <End Role="tb_registro_horas" Type="Self.tb_registro_horas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_timesheet">
+              <PropertyRef Name="id_timesheet" />
+            </Principal>
+            <Dependent Role="tb_registro_horas">
+              <PropertyRef Name="id_timesheet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_apontamento" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="tb_cargo" EntityType="Self.tb_cargo" />
+          <EntitySet Name="tb_colaborador" EntityType="Self.tb_colaborador" />
+          <EntitySet Name="tb_escala" EntityType="Self.tb_escala" />
+          <EntitySet Name="tb_eventos" EntityType="Self.tb_eventos" />
+          <EntitySet Name="tb_gcm" EntityType="Self.tb_gcm" />
+          <EntitySet Name="tb_gestor" EntityType="Self.tb_gestor" />
+          <EntitySet Name="tb_operacao" EntityType="Self.tb_operacao" />
+          <EntitySet Name="tb_registro_horas" EntityType="Self.tb_registro_horas" />
+          <EntitySet Name="tb_timesheet" EntityType="Self.tb_timesheet" />
+          <AssociationSet Name="FK_colaborador_tb_cargo" Association="Self.FK_colaborador_tb_cargo">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_gestor_tb_cargo" Association="Self.FK_tb_gestor_tb_cargo">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Escala" Association="Self.FK_Colaborador_Escala">
+            <End Role="tb_escala" EntitySet="tb_escala" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Gestor" Association="Self.FK_Colaborador_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Operacao" Association="Self.FK_Colaborador_Operacao">
+            <End Role="tb_operacao" EntitySet="tb_operacao" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_colaborador_tb_gcm" Association="Self.FK_colaborador_tb_gcm">
+            <End Role="tb_gcm" EntitySet="tb_gcm" />
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timesheet_Colaborador" Association="Self.FK_Timesheet_Colaborador">
+            <End Role="tb_colaborador" EntitySet="tb_colaborador" />
+            <End Role="tb_timesheet" EntitySet="tb_timesheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Escala_Gestor" Association="Self.FK_Escala_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_escala" EntitySet="tb_escala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Gestor" Association="Self.FK_Evento_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_eventos" EntitySet="tb_eventos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroHoras_Evento" Association="Self.FK_RegistroHoras_Evento">
+            <End Role="tb_eventos" EntitySet="tb_eventos" />
+            <End Role="tb_registro_horas" EntitySet="tb_registro_horas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_gestor_tb_gcm" Association="Self.FK_tb_gestor_tb_gcm">
+            <End Role="tb_gcm" EntitySet="tb_gcm" />
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacao_Gestor" Association="Self.FK_Operacao_Gestor">
+            <End Role="tb_gestor" EntitySet="tb_gestor" />
+            <End Role="tb_operacao" EntitySet="tb_operacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroHoras_Timesheet" Association="Self.FK_RegistroHoras_Timesheet">
+            <End Role="tb_timesheet" EntitySet="tb_timesheet" />
+            <End Role="tb_registro_horas" EntitySet="tb_registro_horas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_apontamentoModelStoreContainer" CdmEntityContainer="db_apontamento">
+          <EntitySetMapping Name="tb_cargo">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_cargo">
+              <MappingFragment StoreEntitySet="tb_cargo">
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_colaborador">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_colaborador">
+              <MappingFragment StoreEntitySet="tb_colaborador">
+                <ScalarProperty Name="id_colaborador" ColumnName="id_colaborador" />
+                <ScalarProperty Name="nome_colaborador" ColumnName="nome_colaborador" />
+                <ScalarProperty Name="id_escala" ColumnName="id_escala" />
+                <ScalarProperty Name="valor_hora" ColumnName="valor_hora" />
+                <ScalarProperty Name="status_colaborador" ColumnName="status_colaborador" />
+                <ScalarProperty Name="id_gestor" ColumnName="id_gestor" />
+                <ScalarProperty Name="id_operacao" ColumnName="id_operacao" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="id_gcm" ColumnName="id_gcm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_escala">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_escala">
+              <MappingFragment StoreEntitySet="tb_escala">
+                <ScalarProperty Name="id_escala" ColumnName="id_escala" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="hora_entrada" ColumnName="hora_entrada" />
+                <ScalarProperty Name="hora_almoco_inicio" ColumnName="hora_almoco_inicio" />
+                <ScalarProperty Name="hora_almoco_fim" ColumnName="hora_almoco_fim" />
+                <ScalarProperty Name="hora_saida" ColumnName="hora_saida" />
+                <ScalarProperty Name="tipo_escala" ColumnName="tipo_escala" />
+                <ScalarProperty Name="dayoff_1" ColumnName="dayoff_1" />
+                <ScalarProperty Name="dayoff_2" ColumnName="dayoff_2" />
+                <ScalarProperty Name="domingo_off" ColumnName="domingo_off" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="id_gestor" ColumnName="id_gestor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_eventos">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_eventos">
+              <MappingFragment StoreEntitySet="tb_eventos">
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="codigo_evento" ColumnName="codigo_evento" />
+                <ScalarProperty Name="nome_evento" ColumnName="nome_evento" />
+                <ScalarProperty Name="cor_evento" ColumnName="cor_evento" />
+                <ScalarProperty Name="descricao_evento" ColumnName="descricao_evento" />
+                <ScalarProperty Name="id_gestor" ColumnName="id_gestor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_gcm">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_gcm">
+              <MappingFragment StoreEntitySet="tb_gcm">
+                <ScalarProperty Name="id_gcm" ColumnName="id_gcm" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="valor_hora" ColumnName="valor_hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_gestor">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_gestor">
+              <MappingFragment StoreEntitySet="tb_gestor">
+                <ScalarProperty Name="id_gestor" ColumnName="id_gestor" />
+                <ScalarProperty Name="nome_gestor" ColumnName="nome_gestor" />
+                <ScalarProperty Name="email_gestor" ColumnName="email_gestor" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="status_gestor" ColumnName="status_gestor" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="id_gcm" ColumnName="id_gcm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_operacao">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_operacao">
+              <MappingFragment StoreEntitySet="tb_operacao">
+                <ScalarProperty Name="id_operacao" ColumnName="id_operacao" />
+                <ScalarProperty Name="nome_operacao" ColumnName="nome_operacao" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="id_gestor" ColumnName="id_gestor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_registro_horas">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_registro_horas">
+              <MappingFragment StoreEntitySet="tb_registro_horas">
+                <ScalarProperty Name="id_registro_horas" ColumnName="id_registro_horas" />
+                <ScalarProperty Name="id_timesheet" ColumnName="id_timesheet" />
+                <ScalarProperty Name="hora_registro" ColumnName="hora_registro" />
+                <ScalarProperty Name="observacao" ColumnName="observacao" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_timesheet">
+            <EntityTypeMapping TypeName="db_apontamentoModel.tb_timesheet">
+              <MappingFragment StoreEntitySet="tb_timesheet">
+                <ScalarProperty Name="id_timesheet" ColumnName="id_timesheet" />
+                <ScalarProperty Name="id_colaborador" ColumnName="id_colaborador" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="hora_entrada" ColumnName="hora_entrada" />
+                <ScalarProperty Name="hora_saida" ColumnName="hora_saida" />
+                <ScalarProperty Name="hora_almoco_inicio" ColumnName="hora_almoco_inicio" />
+                <ScalarProperty Name="hora_almoco_fim" ColumnName="hora_almoco_fim" />
+                <ScalarProperty Name="tipo_apontamento" ColumnName="tipo_apontamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

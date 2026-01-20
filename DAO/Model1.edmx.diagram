@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21f4f4cdf58a4e028ab07536010a963c" Name="Diagram1">
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_cargo" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_colaborador" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_escala" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_eventos" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_gcm" Width="1.5" PointX="3.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_gestor" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_operacao" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_registro_horas" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_apontamentoModel.tb_timesheet" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="db_apontamentoModel.FK_colaborador_tb_cargo" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_tb_gestor_tb_cargo" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Colaborador_Escala" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Colaborador_Gestor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Colaborador_Operacao" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_colaborador_tb_gcm" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Timesheet_Colaborador" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Escala_Gestor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Evento_Gestor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_RegistroHoras_Evento" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_tb_gestor_tb_gcm" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_Operacao_Gestor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_apontamentoModel.FK_RegistroHoras_Timesheet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
