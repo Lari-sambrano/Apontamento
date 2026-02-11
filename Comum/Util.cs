@@ -91,7 +91,7 @@ namespace Apontamento.Comum
                     btnExcluir.Enabled = true;
 
                     btnCadastrar.BackColor = Color.Gray;
-                    btnAlterar.BackColor = Color.Blue;
+                    btnAlterar.BackColor = Color.DodgerBlue;
                     btnExcluir.BackColor = Color.Red;
                     break;
 
@@ -250,8 +250,6 @@ namespace Apontamento.Comum
 
 
         //Projeto Apontamento
-
-
         public static Color GetColor(Core.Enums.WorkType type)
         {
             switch (type)

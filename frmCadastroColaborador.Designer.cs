@@ -61,7 +61,7 @@
             this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(147, 44);
-            this.btnCadastrar.TabIndex = 12;
+            this.btnCadastrar.TabIndex = 7;
             this.btnCadastrar.Text = "Salvar";
             this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -165,7 +165,7 @@
             this.chkAtivo.Location = new System.Drawing.Point(679, 251);
             this.chkAtivo.Name = "chkAtivo";
             this.chkAtivo.Size = new System.Drawing.Size(80, 28);
-            this.chkAtivo.TabIndex = 7;
+            this.chkAtivo.TabIndex = 6;
             this.chkAtivo.Text = "Ativo";
             this.chkAtivo.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +176,7 @@
             this.cbGcm.Location = new System.Drawing.Point(594, 201);
             this.cbGcm.Name = "cbGcm";
             this.cbGcm.Size = new System.Drawing.Size(286, 32);
-            this.cbGcm.TabIndex = 4;
+            this.cbGcm.TabIndex = 5;
             // 
             // label4
             // 
@@ -194,7 +194,7 @@
             this.cbCargo.Location = new System.Drawing.Point(594, 125);
             this.cbCargo.Name = "cbCargo";
             this.cbCargo.Size = new System.Drawing.Size(286, 32);
-            this.cbCargo.TabIndex = 4;
+            this.cbCargo.TabIndex = 3;
             // 
             // label5
             // 
@@ -234,7 +234,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(594, 40);
+            this.txtNome.Location = new System.Drawing.Point(594, 43);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(377, 30);
             this.txtNome.TabIndex = 1;

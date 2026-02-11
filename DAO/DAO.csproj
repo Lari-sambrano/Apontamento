@@ -75,7 +75,6 @@
     <Compile Include="CargoDAO.cs" />
     <Compile Include="ColaboradorDAO.cs" />
     <Compile Include="EscalaDAO.cs" />
-    <Compile Include="ExcelEscalaDAO.cs" />
     <Compile Include="GcmDAO.cs" />
     <Compile Include="GestorDAO.cs" />
     <Compile Include="Interfaces\ICRUD.cs" />

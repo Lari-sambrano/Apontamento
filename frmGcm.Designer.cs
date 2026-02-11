@@ -45,7 +45,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(334, 50);
+            this.label1.Location = new System.Drawing.Point(461, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 24);
             this.label1.TabIndex = 0;
@@ -59,9 +59,9 @@
             this.grdGcm.Controls.Add(this.label2);
             this.grdGcm.Controls.Add(this.label1);
             this.grdGcm.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.grdGcm.Location = new System.Drawing.Point(28, 28);
+            this.grdGcm.Location = new System.Drawing.Point(56, 32);
             this.grdGcm.Name = "grdGcm";
-            this.grdGcm.Size = new System.Drawing.Size(1301, 225);
+            this.grdGcm.Size = new System.Drawing.Size(1636, 225);
             this.grdGcm.TabIndex = 1;
             this.grdGcm.TabStop = false;
             this.grdGcm.Text = "Altere o valor do GCM";
@@ -70,36 +70,36 @@
             // 
             this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnSalvar.Location = new System.Drawing.Point(547, 152);
+            this.btnSalvar.Location = new System.Drawing.Point(674, 152);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(177, 40);
-            this.btnSalvar.TabIndex = 4;
+            this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(547, 95);
+            this.txtValor.Location = new System.Drawing.Point(674, 95);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(178, 30);
-            this.txtValor.TabIndex = 3;
+            this.txtValor.TabIndex = 2;
             // 
             // cbGcm
             // 
             this.cbGcm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGcm.FormattingEnabled = true;
-            this.cbGcm.Location = new System.Drawing.Point(546, 42);
+            this.cbGcm.Location = new System.Drawing.Point(673, 42);
             this.cbGcm.Name = "cbGcm";
             this.cbGcm.Size = new System.Drawing.Size(358, 32);
-            this.cbGcm.TabIndex = 2;
+            this.cbGcm.TabIndex = 1;
             this.cbGcm.SelectedIndexChanged += new System.EventHandler(this.cbGcm_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(465, 95);
+            this.label2.Location = new System.Drawing.Point(592, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 24);
             this.label2.TabIndex = 1;
@@ -109,18 +109,15 @@
             // 
             this.groupBox1.Controls.Add(this.grdGcm1);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(29, 277);
+            this.groupBox1.Location = new System.Drawing.Point(53, 307);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1299, 411);
+            this.groupBox1.Size = new System.Drawing.Size(1631, 411);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "GCM\'s Cadastrados";
             // 
             // grdGcm1
             // 
-            this.grdGcm1.AllowUserToAddRows = false;
-            this.grdGcm1.AllowUserToDeleteRows = false;
-            this.grdGcm1.AllowUserToResizeRows = false;
             this.grdGcm1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdGcm1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdGcm1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -129,14 +126,14 @@
             this.grdGcm1.ReadOnly = true;
             this.grdGcm1.RowHeadersWidth = 51;
             this.grdGcm1.RowTemplate.Height = 24;
-            this.grdGcm1.Size = new System.Drawing.Size(1293, 382);
+            this.grdGcm1.Size = new System.Drawing.Size(1625, 382);
             this.grdGcm1.TabIndex = 0;
             // 
             // frmGcm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 699);
+            this.ClientSize = new System.Drawing.Size(1738, 743);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grdGcm);
             this.MaximizeBox = false;
@@ -144,7 +141,6 @@
             this.Name = "frmGcm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciar GCM\'s";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGcm_Load);
             this.grdGcm.ResumeLayout(false);
             this.grdGcm.PerformLayout();

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DAO;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using DAO;
 
 namespace Apontamento.Forms
 {
@@ -10,13 +11,26 @@ namespace Apontamento.Forms
         //Instância do DAO responsável por persistir Escalas
         //readonly: não pode ser alterada após a inicialização
         private readonly EscalaDAO _escalaDAO = new EscalaDAO();
-
+        //Editar Escala
+        private int? _idEscalaEditando = null;
         public FrmEscala()
         {
             InitializeComponent();
         }
 
+
         #region Métodos Privados
+
+        private void InicializarCamposHorario()
+        {
+            DateTime agora = DateTime.Now;
+
+            dtEntrada.Value = agora;
+            dtSaida.Value = agora;
+            dtAlmocoInicio.Value = agora;
+            dtAlmocoFim.Value = agora;
+        }
+      
 
         private void CarregarCombos()
         {
@@ -43,7 +57,7 @@ namespace Apontamento.Forms
         private void CarregarEscalas()
         {
             //Busca no banco e atribui diretamente ao DataGridView
-            grdEscalas.DataSource = _escalaDAO.Listar().Select(e => new
+            var lista = _escalaDAO.Listar().Select(e => new
             {
                 e.id_escala,
                 e.descricao,
@@ -52,31 +66,39 @@ namespace Apontamento.Forms
                 e.hora_almoco_fim,
                 e.hora_saida,
                 e.tipo_escala,
+
+                // valores crus p/ edição
+                dayoff_1 = e.dayoff_1,
+                dayoff_2 = e.dayoff_2,
+                domingo_off = e.domingo_off,
+
+                // valores “bonitos” p/ grid
                 DayOff1 = ((DayOfWeek)e.dayoff_1).ToString(),
                 DayOff2 = ((DayOfWeek)e.dayoff_2).ToString(),
                 DomingoOff = e.domingo_off.HasValue ? $"{e.domingo_off}º Domingo" : "Nenhum",
-                e.id_gestor,
+
+                e.id_gestor
             }).ToList();
-            
+
+            grdEscalas.DataSource = lista;
+
             grdEscalas.Columns["id_escala"].Visible = false;
             grdEscalas.Columns["tipo_escala"].Visible = false;
             grdEscalas.Columns["id_gestor"].Visible = false;
+
+            // esconda os crus também
+            grdEscalas.Columns["dayoff_1"].Visible = false;
+            grdEscalas.Columns["dayoff_2"].Visible = false;
+            grdEscalas.Columns["domingo_off"].Visible = false;
 
             grdEscalas.Columns["DayOff1"].HeaderText = "Day-Off 1";
             grdEscalas.Columns["DayOff2"].HeaderText = "Day-Off 2";
             grdEscalas.Columns["descricao"].HeaderText = "Descrição";
             grdEscalas.Columns["hora_entrada"].HeaderText = "Hora Entrada";
-            grdEscalas.Columns["hora_almoco_inicio"].HeaderText = "Almoço\nSaída";
-            grdEscalas.Columns["hora_almoco_fim"].HeaderText = "Almoço\nRetorno";
-            grdEscalas.Columns["hora_saida"].HeaderText = "Hora\nSaída";
-            grdEscalas.Columns["DomingoOff"].HeaderText = "Domingo\nOff";
-
-            grdEscalas.Columns["hora_almoco_inicio"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdEscalas.Columns["hora_almoco_fim"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdEscalas.Columns["hora_entrada"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdEscalas.Columns["hora_saida"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdEscalas.Columns["DomingoOff"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+            grdEscalas.Columns["hora_almoco_inicio"].HeaderText = "Saída\nalmoço";
+            grdEscalas.Columns["hora_almoco_fim"].HeaderText = "Retorno almoço";
+            grdEscalas.Columns["hora_saida"].HeaderText = "Hora Saída";
+            grdEscalas.Columns["DomingoOff"].HeaderText = "Domingo Off";
         }
 
         //Valida os campos obrigatórios antes de salvar
@@ -115,10 +137,16 @@ namespace Apontamento.Forms
 
         private void FrmEscala_Load(object sender, EventArgs e)
         {
+            InicializarCamposHorario();
+            //Carrega zerado os horários
+           // ConfigurarDataTime();
             //Preenche as Combos
             CarregarCombos();
             //Carrega as escalas existentes no grid
             CarregarEscalas();
+
+            //
+            grdEscalas.CellClick += grdEscalas_CellClick;
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -161,6 +189,36 @@ namespace Apontamento.Forms
             CarregarEscalas();
         }
 
+        private void grdEscalas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
+            var row = grdEscalas.Rows[e.RowIndex];
+
+            _idEscalaEditando = Convert.ToInt32(row.Cells["id_escala"].Value);
+
+            txtDescricao.Text = Convert.ToString(row.Cells["descricao"].Value);
+
+            // horários: as colunas são TimeSpan
+            dtEntrada.Value = DateTime.Today.Add((TimeSpan)row.Cells["hora_entrada"].Value);
+            dtAlmocoInicio.Value = DateTime.Today.Add((TimeSpan)row.Cells["hora_almoco_inicio"].Value);
+            dtAlmocoFim.Value = DateTime.Today.Add((TimeSpan)row.Cells["hora_almoco_fim"].Value);
+            dtSaida.Value = DateTime.Today.Add((TimeSpan)row.Cells["hora_saida"].Value);
+
+            cbTipoEscala.SelectedItem = Convert.ToString(row.Cells["tipo_escala"].Value);
+
+            // dayoff crus (int) => selecionar enum no combo
+            cbDayOff1.SelectedItem = (DayOfWeek)Convert.ToInt32(row.Cells["dayoff_1"].Value);
+            cbDayOff2.SelectedItem = (DayOfWeek)Convert.ToInt32(row.Cells["dayoff_2"].Value);
+
+            // domingo_off: null => index 0, senão index = valor
+            var dom = row.Cells["domingo_off"].Value;
+            if (dom == null || dom == DBNull.Value)
+                cbDomingoOff.SelectedIndex = 0;
+            else
+                cbDomingoOff.SelectedIndex = Convert.ToInt32(dom);
+
+            btnSalvar.Text = "Atualizar";
+        }
     }
 }

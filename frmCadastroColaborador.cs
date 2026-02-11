@@ -226,7 +226,7 @@ namespace Apontamento
         //Carrega a combo de escalas
         private void CarregarEscalas()
         {
-            cbEscala.DataSource = new EscalaDAO().Listar();
+            cbEscala.DataSource = new EscalaDAO().ListarSemImportadas();
             cbEscala.DisplayMember = "descricao";
             cbEscala.ValueMember = "id_escala";
             cbEscala.SelectedIndex = -1;

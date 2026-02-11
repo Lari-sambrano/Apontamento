@@ -1,4 +1,6 @@
-﻿namespace Apontamento
+﻿using System.Windows.Forms;
+
+namespace Apontamento
 {
     partial class frmTimeSheetMensal
     {
@@ -30,7 +32,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnImportar = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.btnCarregar = new System.Windows.Forms.Button();
             this.dtCompetencia = new System.Windows.Forms.DateTimePicker();
@@ -44,14 +45,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnSalvar);
-            this.groupBox1.Controls.Add(this.btnImportar);
             this.groupBox1.Controls.Add(this.btnExportarExcel);
             this.groupBox1.Controls.Add(this.btnCarregar);
             this.groupBox1.Controls.Add(this.dtCompetencia);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(43, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1418, 213);
             this.groupBox1.TabIndex = 0;
@@ -60,9 +62,10 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnSalvar.Location = new System.Drawing.Point(836, 136);
+            this.btnSalvar.Location = new System.Drawing.Point(775, 136);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(147, 44);
             this.btnSalvar.TabIndex = 4;
@@ -70,34 +73,24 @@
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // btnImportar
-            // 
-            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            this.btnImportar.ForeColor = System.Drawing.Color.White;
-            this.btnImportar.Location = new System.Drawing.Point(683, 136);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(147, 44);
-            this.btnImportar.TabIndex = 3;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
-            // 
             // btnExportarExcel
             // 
+            this.btnExportarExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExportarExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(530, 136);
+            this.btnExportarExcel.Location = new System.Drawing.Point(622, 136);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(147, 44);
-            this.btnExportarExcel.TabIndex = 2;
+            this.btnExportarExcel.TabIndex = 3;
             this.btnExportarExcel.Text = "Exportar";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnCarregar
             // 
             this.btnCarregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnCarregar.ForeColor = System.Drawing.Color.White;
-            this.btnCarregar.Location = new System.Drawing.Point(365, 136);
+            this.btnCarregar.Location = new System.Drawing.Point(457, 136);
             this.btnCarregar.Name = "btnCarregar";
             this.btnCarregar.Size = new System.Drawing.Size(147, 44);
             this.btnCarregar.TabIndex = 2;
@@ -126,9 +119,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.grdMensal);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(13, 233);
+            this.groupBox2.Location = new System.Drawing.Point(43, 241);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1421, 497);
             this.groupBox2.TabIndex = 1;
@@ -153,11 +149,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1446, 742);
+            this.ClientSize = new System.Drawing.Size(1554, 816);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmTimeSheetMensal";
-            this.Text = "Controle Mensal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Apontamento";
             this.Load += new System.EventHandler(this.frmTimeSheetMensal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -176,7 +174,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView grdMensal;
         private System.Windows.Forms.Button btnExportarExcel;
-        private System.Windows.Forms.Button btnImportar;
         private System.Windows.Forms.Button btnSalvar;
     }
 }

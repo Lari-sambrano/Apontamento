@@ -32,11 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.cadastroDeColaboradorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apontamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.escalasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.escalasEspeciaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gCMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.gCMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,7 +48,6 @@
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroDeColaboradorToolStripMenuItem,
             this.apontamentoToolStripMenuItem,
-            this.escalasToolStripMenuItem,
             this.gCMToolStripMenuItem,
             this.sairToolStripMenuItem});
             menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -77,20 +74,12 @@
             this.apontamentoToolStripMenuItem.Text = "Apontamento";
             this.apontamentoToolStripMenuItem.Click += new System.EventHandler(this.apontamentoToolStripMenuItem_Click);
             // 
-            // escalasToolStripMenuItem
+            // gCMToolStripMenuItem
             // 
-            this.escalasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.escalasEspeciaisToolStripMenuItem});
-            this.escalasToolStripMenuItem.Name = "escalasToolStripMenuItem";
-            this.escalasToolStripMenuItem.Size = new System.Drawing.Size(93, 32);
-            this.escalasToolStripMenuItem.Text = "Escalas";
-            // 
-            // escalasEspeciaisToolStripMenuItem
-            // 
-            this.escalasEspeciaisToolStripMenuItem.Name = "escalasEspeciaisToolStripMenuItem";
-            this.escalasEspeciaisToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
-            this.escalasEspeciaisToolStripMenuItem.Text = "Escalas Especiais";
-            this.escalasEspeciaisToolStripMenuItem.Click += new System.EventHandler(this.escalasEspeciaisToolStripMenuItem_Click);
+            this.gCMToolStripMenuItem.Name = "gCMToolStripMenuItem";
+            this.gCMToolStripMenuItem.Size = new System.Drawing.Size(68, 32);
+            this.gCMToolStripMenuItem.Text = "Gcm";
+            this.gCMToolStripMenuItem.Click += new System.EventHandler(this.gCMToolStripMenuItem_Click_1);
             // 
             // sairToolStripMenuItem
             // 
@@ -110,13 +99,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // gCMToolStripMenuItem
-            // 
-            this.gCMToolStripMenuItem.Name = "gCMToolStripMenuItem";
-            this.gCMToolStripMenuItem.Size = new System.Drawing.Size(68, 32);
-            this.gCMToolStripMenuItem.Text = "Gcm";
-            this.gCMToolStripMenuItem.Click += new System.EventHandler(this.gCMToolStripMenuItem_Click_1);
             // 
             // frmPrincipal
             // 
@@ -145,9 +127,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem cadastroDeColaboradorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem apontamentoToolStripMenuItem;
-       // private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem escalasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem escalasEspeciaisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gCMToolStripMenuItem;
     }

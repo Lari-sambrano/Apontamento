@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DAO
@@ -42,6 +43,39 @@ namespace DAO
                                          .Select(c => c.tb_escala).FirstOrDefault();
         }
 
+        public void Atualizar(tb_escala escala)
+        {
+            using (var ctx = new db_apontamento())
+            {
+                var atual = ctx.tb_escala.FirstOrDefault(x => x.id_escala == escala.id_escala);
+                if (atual == null) throw new Exception("Escala não encontrada.");
+
+                atual.descricao = escala.descricao;
+                atual.hora_entrada = escala.hora_entrada;
+                atual.hora_almoco_inicio = escala.hora_almoco_inicio;
+                atual.hora_almoco_fim = escala.hora_almoco_fim;
+                atual.hora_saida = escala.hora_saida;
+                atual.tipo_escala = escala.tipo_escala;
+                atual.dayoff_1 = escala.dayoff_1;
+                atual.dayoff_2 = escala.dayoff_2;
+                atual.domingo_off = escala.domingo_off;
+
+                // se fizer sentido: atualizar id_gestor ou manter original
+                atual.id_gestor = escala.id_gestor;
+
+                ctx.SaveChanges();
+            }
+        }
+
+
+        public List<tb_escala> ListarSemImportadas()
+        {
+            return objBanco.tb_escala
+                .Where(e => e.ativo == true)
+                .Where(e => e.descricao == null || !e.descricao.StartsWith("Escala importada"))
+                .OrderBy(e => e.hora_entrada)
+                .ToList();
+        }
 
     }
 

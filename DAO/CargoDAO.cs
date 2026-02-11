@@ -19,7 +19,7 @@ namespace DAO
         public List<tb_cargo> Listar()
         {
             //Lista os cargos cadastrado no BD, usando um filtro para ocultar o cargo de gestor
-            return objBanco.tb_cargo.Where(c => c.id_cargo != 4).OrderBy(c => c.descricao).ToList();
+            return objBanco.tb_cargo.Where(c => c.id_cargo == c.id_cargo).OrderBy(c => c.descricao).ToList();
         }
     }
 

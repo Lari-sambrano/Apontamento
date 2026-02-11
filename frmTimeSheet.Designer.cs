@@ -1,4 +1,6 @@
-﻿namespace Apontamento
+﻿using System.Windows.Forms;
+
+namespace Apontamento
 {
     partial class frmTimeSheet
     {
@@ -29,12 +31,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblFeriados = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.dtCompetencia = new System.Windows.Forms.DateTimePicker();
             this.btnCarregar = new System.Windows.Forms.Button();
-            this.cbColaborador = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnMensal = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdTimesheet = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -59,10 +60,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHorasTrabalhadas = new System.Windows.Forms.Label();
-            this.lblBancoDeHoras = new System.Windows.Forms.Label();
             this.lblValorReceber = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.lblHorasFeriado = new System.Windows.Forms.Label();
+            this.lblUnpaidLeave = new System.Windows.Forms.Label();
+            this.lblPaidLeave = new System.Windows.Forms.Label();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.lblAtestados = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,97 +76,88 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnMensal);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lblFeriados);
+            this.groupBox1.Controls.Add(this.panel11);
             this.groupBox1.Controls.Add(this.dtCompetencia);
             this.groupBox1.Controls.Add(this.btnCarregar);
-            this.groupBox1.Controls.Add(this.cbColaborador);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1436, 218);
+            this.groupBox1.Size = new System.Drawing.Size(1539, 218);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesquisar";
             // 
+            // lblFeriados
+            // 
+            this.lblFeriados.AutoSize = true;
+            this.lblFeriados.Location = new System.Drawing.Point(69, 175);
+            this.lblFeriados.Name = "lblFeriados";
+            this.lblFeriados.Size = new System.Drawing.Size(0, 24);
+            this.lblFeriados.TabIndex = 7;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Gold;
+            this.panel11.Location = new System.Drawing.Point(35, 175);
+            this.panel11.Margin = new System.Windows.Forms.Padding(4);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(27, 25);
+            this.panel11.TabIndex = 1;
+            this.panel11.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
+            // 
             // dtCompetencia
             // 
             this.dtCompetencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtCompetencia.Location = new System.Drawing.Point(574, 87);
+            this.dtCompetencia.Location = new System.Drawing.Point(1200, 37);
             this.dtCompetencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtCompetencia.Name = "dtCompetencia";
             this.dtCompetencia.ShowUpDown = true;
             this.dtCompetencia.Size = new System.Drawing.Size(159, 30);
-            this.dtCompetencia.TabIndex = 3;
+            this.dtCompetencia.TabIndex = 2;
             this.dtCompetencia.Value = new System.DateTime(2025, 12, 8, 0, 0, 0, 0);
+            this.dtCompetencia.ValueChanged += new System.EventHandler(this.dtCompetencia_ValueChanged);
             // 
             // btnCarregar
             // 
             this.btnCarregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnCarregar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCarregar.ForeColor = System.Drawing.Color.White;
-            this.btnCarregar.Location = new System.Drawing.Point(574, 155);
+            this.btnCarregar.Location = new System.Drawing.Point(1046, 140);
             this.btnCarregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCarregar.Name = "btnCarregar";
             this.btnCarregar.Size = new System.Drawing.Size(147, 44);
-            this.btnCarregar.TabIndex = 4;
+            this.btnCarregar.TabIndex = 3;
             this.btnCarregar.Text = "Carregar";
             this.btnCarregar.UseVisualStyleBackColor = false;
             this.btnCarregar.Click += new System.EventHandler(this.btnCarregar_Click);
             // 
-            // cbColaborador
-            // 
-            this.cbColaborador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbColaborador.FormattingEnabled = true;
-            this.cbColaborador.Location = new System.Drawing.Point(574, 47);
-            this.cbColaborador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbColaborador.Name = "cbColaborador";
-            this.cbColaborador.Size = new System.Drawing.Size(439, 32);
-            this.cbColaborador.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(304, 93);
+            this.label2.Location = new System.Drawing.Point(928, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(246, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Selecione um mês e ano:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(284, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Selecione um Colaborador:";
-            // 
-            // btnMensal
-            // 
-            this.btnMensal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            this.btnMensal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnMensal.ForeColor = System.Drawing.Color.White;
-            this.btnMensal.Location = new System.Drawing.Point(740, 155);
-            this.btnMensal.Name = "btnMensal";
-            this.btnMensal.Size = new System.Drawing.Size(147, 44);
-            this.btnMensal.TabIndex = 5;
-            this.btnMensal.Text = "Listar todos";
-            this.btnMensal.UseVisualStyleBackColor = false;
-            this.btnMensal.Click += new System.EventHandler(this.btnMensal_Click);
-            // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.grdTimesheet);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(13, 238);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(1440, 309);
+            this.groupBox2.Size = new System.Drawing.Size(1539, 309);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Jornada";
@@ -175,15 +170,18 @@
             this.grdTimesheet.Margin = new System.Windows.Forms.Padding(4);
             this.grdTimesheet.Name = "grdTimesheet";
             this.grdTimesheet.RowHeadersWidth = 51;
-            this.grdTimesheet.Size = new System.Drawing.Size(1432, 278);
+            this.grdTimesheet.Size = new System.Drawing.Size(1531, 278);
             this.grdTimesheet.TabIndex = 0;
+            this.grdTimesheet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTimesheet_CellClick);
             this.grdTimesheet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTimesheet_CellEndEdit);
             this.grdTimesheet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdTimesheet_CellMouseDown);
             this.grdTimesheet.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTimesheet_CellMouseEnter);
             this.grdTimesheet.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdTimesheet_CellMouseUp);
+            this.grdTimesheet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTimesheet_CellValueChanged);
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
@@ -209,7 +207,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(624, 240);
+            this.groupBox3.Size = new System.Drawing.Size(723, 240);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Caption";
@@ -407,40 +405,33 @@
             // 
             // lblHorasTrabalhadas
             // 
+            this.lblHorasTrabalhadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblHorasTrabalhadas.AutoSize = true;
             this.lblHorasTrabalhadas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHorasTrabalhadas.Location = new System.Drawing.Point(47, 556);
+            this.lblHorasTrabalhadas.Location = new System.Drawing.Point(189, 556);
             this.lblHorasTrabalhadas.Name = "lblHorasTrabalhadas";
             this.lblHorasTrabalhadas.Size = new System.Drawing.Size(190, 24);
             this.lblHorasTrabalhadas.TabIndex = 3;
             this.lblHorasTrabalhadas.Text = "Horas trabalhadas:";
             // 
-            // lblBancoDeHoras
-            // 
-            this.lblBancoDeHoras.AutoSize = true;
-            this.lblBancoDeHoras.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBancoDeHoras.Location = new System.Drawing.Point(69, 585);
-            this.lblBancoDeHoras.Name = "lblBancoDeHoras";
-            this.lblBancoDeHoras.Size = new System.Drawing.Size(168, 24);
-            this.lblBancoDeHoras.TabIndex = 3;
-            this.lblBancoDeHoras.Text = "Banco de Horas:";
-            // 
             // lblValorReceber
             // 
+            this.lblValorReceber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblValorReceber.AutoSize = true;
             this.lblValorReceber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorReceber.Location = new System.Drawing.Point(69, 614);
+            this.lblValorReceber.Location = new System.Drawing.Point(124, 677);
             this.lblValorReceber.Name = "lblValorReceber";
-            this.lblValorReceber.Size = new System.Drawing.Size(166, 24);
+            this.lblValorReceber.Size = new System.Drawing.Size(255, 24);
             this.lblValorReceber.TabIndex = 3;
-            this.lblValorReceber.Text = "Valor a Receber:";
+            this.lblValorReceber.Text = "Valor de custo ao projeto:";
             // 
             // btnExportar
             // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnExportar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.ForeColor = System.Drawing.Color.White;
-            this.btnExportar.Location = new System.Drawing.Point(88, 711);
+            this.btnExportar.Location = new System.Drawing.Point(472, 730);
             this.btnExportar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(147, 44);
@@ -451,10 +442,11 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnSalvar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnSalvar.Location = new System.Drawing.Point(241, 711);
+            this.btnSalvar.Location = new System.Drawing.Point(634, 730);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(147, 44);
@@ -463,38 +455,98 @@
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // lblHorasFeriado
+            // 
+            this.lblHorasFeriado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHorasFeriado.AutoSize = true;
+            this.lblHorasFeriado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHorasFeriado.Location = new System.Drawing.Point(72, 653);
+            this.lblHorasFeriado.Name = "lblHorasFeriado";
+            this.lblHorasFeriado.Size = new System.Drawing.Size(307, 24);
+            this.lblHorasFeriado.TabIndex = 5;
+            this.lblHorasFeriado.Text = "Horas trabalhadas em feriados:";
+            // 
+            // lblUnpaidLeave
+            // 
+            this.lblUnpaidLeave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUnpaidLeave.AutoSize = true;
+            this.lblUnpaidLeave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnpaidLeave.Location = new System.Drawing.Point(234, 580);
+            this.lblUnpaidLeave.Name = "lblUnpaidLeave";
+            this.lblUnpaidLeave.Size = new System.Drawing.Size(145, 24);
+            this.lblUnpaidLeave.TabIndex = 6;
+            this.lblUnpaidLeave.Text = "Unpaid Leave:";
+            // 
+            // lblPaidLeave
+            // 
+            this.lblPaidLeave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPaidLeave.AutoSize = true;
+            this.lblPaidLeave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidLeave.Location = new System.Drawing.Point(259, 604);
+            this.lblPaidLeave.Name = "lblPaidLeave";
+            this.lblPaidLeave.Size = new System.Drawing.Size(120, 24);
+            this.lblPaidLeave.TabIndex = 7;
+            this.lblPaidLeave.Text = "Paid Leave:";
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnImportar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.Color.White;
+            this.btnImportar.Location = new System.Drawing.Point(319, 730);
+            this.btnImportar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(147, 44);
+            this.btnImportar.TabIndex = 4;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // lblAtestados
             // 
+            this.lblAtestados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAtestados.AutoSize = true;
             this.lblAtestados.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAtestados.Location = new System.Drawing.Point(31, 646);
+            this.lblAtestados.Location = new System.Drawing.Point(267, 629);
             this.lblAtestados.Name = "lblAtestados";
-            this.lblAtestados.Size = new System.Drawing.Size(206, 24);
-            this.lblAtestados.TabIndex = 3;
-            this.lblAtestados.Text = "Horas em atestados:";
+            this.lblAtestados.Size = new System.Drawing.Size(112, 24);
+            this.lblAtestados.TabIndex = 8;
+            this.lblAtestados.Text = "Atestados:";
             // 
             // frmTimeSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1453, 821);
+            this.ClientSize = new System.Drawing.Size(1612, 850);
             this.Controls.Add(this.lblAtestados);
+            this.Controls.Add(this.lblPaidLeave);
+            this.Controls.Add(this.lblUnpaidLeave);
+            this.Controls.Add(this.lblHorasFeriado);
             this.Controls.Add(this.lblValorReceber);
             this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnExportar);
-            this.Controls.Add(this.lblBancoDeHoras);
             this.Controls.Add(this.lblHorasTrabalhadas);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
             this.Name = "frmTimeSheet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Apontamento";
             this.Load += new System.EventHandler(this.frmTimeSheet_Load);
+            this.groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            this.groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            this.groupBox3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            this.lblHorasTrabalhadas.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            this.lblAtestados.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            this.lblValorReceber.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            this.btnExportar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            this.btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -509,9 +561,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtCompetencia;
-        private System.Windows.Forms.ComboBox cbColaborador;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView grdTimesheet;
@@ -538,11 +588,15 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCarregar;
         private System.Windows.Forms.Label lblHorasTrabalhadas;
-        private System.Windows.Forms.Label lblBancoDeHoras;
         private System.Windows.Forms.Label lblValorReceber;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Button btnMensal;
-        private System.Windows.Forms.Label lblAtestados;
+        private Panel panel11;
+        private Label lblHorasFeriado;
+        private Label lblUnpaidLeave;
+        private Label lblPaidLeave;
+        private Button btnImportar;
+        private Label lblFeriados;
+        private Label lblAtestados;
     }
 }

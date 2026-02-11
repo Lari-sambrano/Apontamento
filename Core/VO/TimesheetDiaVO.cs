@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.VO
 {
@@ -20,13 +16,9 @@ namespace Core.VO
         public decimal HorasTrabalhadas { get; set; }
         public decimal BancoHoras { get; set; }
         public decimal ValorDia { get; set; }
-
         public bool PossuiExcecao { get; set; }
         public decimal HorasAtestado { get; set; }
         public bool IsFeriado { get; set; }
-
         public decimal AdicionalFeriado { get; set; }
-
-
     }
 }

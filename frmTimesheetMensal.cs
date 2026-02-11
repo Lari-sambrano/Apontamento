@@ -1,4 +1,5 @@
 ﻿using Apontamento.Comum;
+using ClosedXML.Excel;
 using Core.Enums;
 using Core.VO;
 using DAO;
@@ -371,11 +372,95 @@ namespace Apontamento
         }
 
         #region EXCEL IMPORTAR
-        private void btnImportar_Click(object sender, EventArgs e)
-        {
-
-        }
         #endregion
+
+
+        //Excel Exportar
+        private void ExportarParaExcel()
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel (*.xlsx)|*.xlsx";
+                sfd.FileName = $"Timesheet_{dtCompetencia.Value:MM_yyyy}.xlsx";
+
+                if (sfd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                using (var wb = new ClosedXML.Excel.XLWorkbook())
+                {
+                    var ws = wb.Worksheets.Add("Timesheet");
+
+                    int colIndex = 1;
+
+                    // Cabeçalhos
+                    for (int c = 0; c < grdMensal.Columns.Count; c++)
+                    {
+                        ws.Cell(1, colIndex).Value = grdMensal.Columns[c].HeaderText;
+                        ws.Cell(1, colIndex).Style.Font.Bold = true;
+                        ws.Cell(1, colIndex).Style.Alignment.Horizontal =
+                            ClosedXML.Excel.XLAlignmentHorizontalValues.Center;
+
+                        ws.Column(colIndex).Width = grdMensal.Columns[c].Width / 6;
+                        colIndex++;
+                    }
+
+                    int rowIndex = 2;
+
+                    // Linhas
+                    for (int r = 0; r < grdMensal.Rows.Count; r++)
+                    {
+                        colIndex = 1;
+
+                        for (int c = 0; c < grdMensal.Columns.Count; c++)
+                        {
+                            var cellGrid = grdMensal.Rows[r].Cells[c];
+                            var cellExcel = ws.Cell(rowIndex, colIndex);
+
+                            // Valor
+                            cellExcel.Value = cellGrid.Value;
+
+                            // Alinhamento
+                            cellExcel.Style.Alignment.Horizontal =
+                                ClosedXML.Excel.XLAlignmentHorizontalValues.Center;
+                            cellExcel.Style.Alignment.Vertical =
+                                ClosedXML.Excel.XLAlignmentVerticalValues.Center;
+
+                            // Total do mês
+                            if (grdMensal.Columns[c].Name == "colTotal")
+                            {
+                                cellExcel.Style.NumberFormat.Format = "R$ #,##0.00";
+                                cellExcel.Style.Font.Bold = true;
+                            }
+
+                            // Cor de fundo (UA, ML, feriado, etc.)
+                            if (cellGrid.Style.BackColor != Color.Empty)
+                            {
+                                Color cor = cellGrid.Style.BackColor;
+                                cellExcel.Style.Fill.BackgroundColor =
+                                    ClosedXML.Excel.XLColor.FromArgb(cor.R, cor.G, cor.B);
+                            }
+
+                            // Borda
+                            cellExcel.Style.Border.OutsideBorder =
+                                ClosedXML.Excel.XLBorderStyleValues.Thin;
+
+                            colIndex++;
+                        }
+
+                        rowIndex++;
+                    }
+
+                    wb.SaveAs(sfd.FileName);
+                }
+
+                MessageBox.Show("Exportação para Excel realizada com sucesso!", "Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            ExportarParaExcel();
+        }
     }
 }  
 
